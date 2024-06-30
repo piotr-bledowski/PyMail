@@ -1,4 +1,6 @@
 import smtplib
 import ssl
 
-print('hello')
+from config import *
+
+
