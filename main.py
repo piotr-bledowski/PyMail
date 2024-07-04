@@ -2,7 +2,7 @@ from sender import send_email
 
 
 # Your email contents go here
-recipients = ['piotr.bledowski.77@gmail.com']
+recipients = ['john.doe@example.com', 'jane.doe@yahoo.com']
 subject = 'Hello!'
 body = 'Your automated e-mail is here!'
 attachment = 'data.csv'
