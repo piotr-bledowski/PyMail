@@ -8,7 +8,7 @@ from config import *
 from credentials import *
 
 
-def send_email(recipients: list, subject: str, body: str, attachment: str):
+def send_email(recipients: list, subject: str, body: str, attachment: str = None):
     for recipient in recipients:        
         msg = MIMEMultipart()
         msg['From'] = EMAIL_ADDRESS
@@ -17,13 +17,14 @@ def send_email(recipients: list, subject: str, body: str, attachment: str):
 
         msg.attach(MIMEText(body, 'plain'))
 
-        file = open(attachment, 'rb')
-        # Encode as base 64
-        attach = MIMEBase('application', 'octet-stream')
-        attach.set_payload((file).read())
-        encoders.encode_base64(attach)
-        attach.add_header('Content-Disposition', 'attachment; filename= data.csv')
-        msg.attach(attach)
+        if attachment:
+            file = open(attachment, 'rb')
+            # Encode as base 64
+            attach = MIMEBase('application', 'octet-stream')
+            attach.set_payload((file).read())
+            encoders.encode_base64(attach)
+            attach.add_header('Content-Disposition', 'attachment; filename= data.csv')
+            msg.attach(attach)
 
         text = msg.as_string()
 
